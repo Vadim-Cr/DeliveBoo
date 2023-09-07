@@ -14,6 +14,7 @@
             Welcome to Laravel+Bootstrap 4
             Welcome to Laravel+Bootstrap from VDM <br>
             Welcome to Laravel+Bootstrap 12 Hola Mundo!!!
+            CIAO!
         </h1>
 
         <p class="col-md-8 fs-4">This a preset package with Bootstrap 5 views for laravel projects including laravel breeze/blade. It works from laravel 9.x to the latest release 10.x</p>
