@@ -12,6 +12,8 @@
         </div>
         <h1 class="display-5 fw-bold">
             Welcome to Laravel+Bootstrap 4
+            Welcome to Laravel+Bootstrap from VDM <br>
+            Welcome to Laravel+Bootstrap 12 Hola Mundo!!!
         </h1>
 
         <p class="col-md-8 fs-4">This a preset package with Bootstrap 5 views for laravel projects including laravel breeze/blade. It works from laravel 9.x to the latest release 10.x</p>
@@ -22,6 +24,7 @@
 <div class="content">
     <div class="container">
         <p>Lorem ipsum dolor adipisicing elit. Tempora temporibus, dicta nemo aliquam totam nisi deserunt soluta quas voluptatum ab beatae praesentium necessitatibus minus, facilis illum rerum officiis accusamus dolores!</p>
+        <h3>Giulia</h3>
     </div>
 </div>
 @endsection
