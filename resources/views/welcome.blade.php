@@ -12,18 +12,19 @@
 <div class="container d-flex ">
     <div class="row justify-content-center">
         @foreach ($restaurants as $restaurant)
-            <div class="card m-2 col-3">
-                <h3>
-                    {{$restaurant -> activity_name}}
-                </h3>
-                <p>
-                    {{$restaurant -> address}}
-                </p>
-                <p>
-                    {{$restaurant -> mobile_phone}}
-                </p>
-
-            </div>
+            <a class="text-decoration-none card m-2 col-3" href="{{ route('show', $restaurant -> id)}}">
+                <div>
+                    <h3>
+                        {{$restaurant -> activity_name}}
+                    </h3>
+                    <div>
+                        <span><strong>Indirizzo:</strong> {{$restaurant -> address}}</span>
+                    </div>
+                    <div>
+                        <span><strong>Tel:</strong> {{$restaurant -> mobile_phone}}</span>
+                    </div>
+                </div>
+            </a>
         @endforeach
     </div>
 </div>

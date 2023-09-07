@@ -19,7 +19,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route :: get('/', [GuestController :: class, 'index']) -> name('welcome');
+// ROTTA INDEX
+Route::get('/', [GuestController::class, 'index'])->name('welcome');
+
+// ROTTA SHOW
+Route::get('/show/{id}', [GuestController::class, 'show'])
+    ->name('show');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,4 +37,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
