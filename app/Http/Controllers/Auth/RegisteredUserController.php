@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Restaurant;
 
 class RegisteredUserController extends Controller
 {
@@ -36,11 +37,24 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $restaurant = Restaurant::create([
+            'activity_name' => $request->activity_name,
+            'address' => $request->address,
+            'vat' => $request->vat,
+            'mobile_phone' => $request->mobile_phone
+        ]);
+
+        $restaurantId = $restaurant->id;
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'restaurant_id' => $restaurantId
         ]);
+
+// ...
+
 
         event(new Registered($user));
 

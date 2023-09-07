@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('activity_name', 128);
-            $table->string('image_path', 255);
+            $table->string('image_path', 255)->nullable();
             $table->string('address', 255);
             $table->string('vat')->unique();
             $table->string('mobile_phone')->unique();
