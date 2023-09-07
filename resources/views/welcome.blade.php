@@ -11,6 +11,7 @@
             </svg>
         </div>
         <h1 class="display-5 fw-bold">
+            Welcome to Laravel+Bootstrap from VDM <br>
             Welcome to Laravel+Bootstrap 12 Hola Mundo!!!
         </h1>
 
