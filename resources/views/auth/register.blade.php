@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Registrati') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" onsubmit="event.preventDefault(); validatePassword()">
                         @csrf
                         {{-- input nome ristoratore --}}
                         <div class="mb-4 row">
@@ -47,11 +47,6 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -61,7 +56,26 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <span id="pwdError" class="text-danger"></span>
                             </div>
+
+                            {{-- funzione validazione lato client --}}
+                            <script>
+                                const passwordInput = document.getElementById('password');
+                                const confirmPasswordInput = document.getElementById('password-confirm');
+                                const passwordError = document.getElementById('pwdError');
+                            
+                                confirmPasswordInput.addEventListener('input', function () {
+                                    const password = passwordInput.value;
+                                    const confirmPassword = confirmPasswordInput.value;
+                            
+                                    if (password === confirmPassword) {
+                                        passwordError.textContent = ''; 
+                                    } else {
+                                        passwordError.textContent = 'Le password non corrispondono';
+                                    }
+                                });
+                            </script>
                         </div>
 
                         {{-- input nome attività --}}
@@ -87,7 +101,7 @@
                             <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('P.IVA') }}</label>
 
                             <div class="col-md-6">
-                                <input id="vat" type="text" class="form-control" name="vat" value="IT{{ old('vat') }}" required autofocus>
+                                <input id="vat" type="text" class="form-control" name="vat" value="{{ old('vat','IT') }}" required autofocus minlength='13' maxlength='13'>
                             </div>
                         </div>
 
@@ -96,7 +110,7 @@
                             <label for="mobile_phone" class="col-md-4 col-form-label text-md-right">{{ __('Cellulare') }}</label>
 
                             <div class="col-md-6">
-                                <input id="mobile_phone" type="text" class="form-control" name="mobile_phone" value="+39 {{ old('mobile_phone') }}" required autofocus>
+                                <input id="mobile_phone" type="text" class="form-control" name="mobile_phone" value="{{ old('mobile_phone', '+39 ') }}" required autofocus minlength='13' maxlength='14'>
                             </div>
                         </div>
 
