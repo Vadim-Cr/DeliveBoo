@@ -5,22 +5,22 @@
 
 <div class="container d-flex justify-content-center my-3">
         <div class="row">
-            <div class="card">
+            <div class="card p-3">
 
-            <h1 class='text-center bg-dark text-light'>
+            <h1 class='text-center bg-dark text-light p-2 rounded'>
                 {{$restaurant -> activity_name}}
-                <a class="text-decoration-none btn btn-light" href="{{ route('restaurants.editRestaurant', $restaurant -> id)}}">
-                    Modifica
-                </a>
             </h1>
-
-            <div>
+            
+            <div class="m-2">
                 <span><strong>Indirizzo:</strong> {{$restaurant -> address}}</span>
             </div>
-
-            <div>
+            
+            <div class="m-2">
                 <span><strong>Tel:</strong> {{$restaurant -> mobile_phone}}</span>
             </div>
+            <a class="text-decoration-none btn bg-warning" href="{{ route('restaurants.editRestaurant', $restaurant -> id)}}">
+                Modifica il tuo Ristorante
+            </a>
 
         </div>
 

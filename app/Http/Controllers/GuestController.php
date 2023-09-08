@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Dish;
+use App\Models\Typology;
 
 class GuestController extends Controller
 {
@@ -44,10 +45,22 @@ class GuestController extends Controller
     public function edit($id)
     {
         $restaurant = Restaurant::find(Auth::user()->restaurant_id);
-        $restaurant = Restaurant :: all();
+        $typologies = Typology :: all();
 
-        return view('restaurants.editRestaurant', compact('restaurant',));
+        return view('restaurants.editRestaurant', compact('restaurant', 'typologies'));
     }
+    
+    public function update(Request $request, $id) {
+
+        $restaurant = Restaurant::find(Auth::user()->restaurant_id);
+        $data = $request -> all();
+
+        $restaurant -> update($data);
+        $restaurant -> typologies() -> sync($data['typologies']);
+
+        return redirect() -> route('show', $restaurant -> id);
+    }
+    
 }
 
 
