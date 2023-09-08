@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
+                        {{-- input nome ristoratore --}}
                         <div class="mb-4 row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
 
@@ -25,6 +25,7 @@
                             </div>
                         </div>
 
+                        {{-- input email ristoratore --}}
                         <div class="mb-4 row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
@@ -39,6 +40,7 @@
                             </div>
                         </div>
 
+                        {{-- input password ristoratore --}}
                         <div class="mb-4 row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -53,6 +55,7 @@
                             </div>
                         </div>
 
+                        {{-- input conferma password ristoratore --}}
                         <div class="mb-4 row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
 
@@ -60,6 +63,8 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        {{-- input nome attività --}}
                         <div class="mb-4 row">
                             <label for="activity_name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Attività') }}</label>
 
@@ -67,6 +72,8 @@
                                 <input id="activity_name" type="text" class="form-control" name="activity_name" value="{{ old('activity_name') }}" required autofocus>
                             </div>
                         </div>
+
+                        {{-- input indirizzo attività --}}
                         <div class="mb-4 row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
 
@@ -74,6 +81,8 @@
                                 <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required autofocus>
                             </div>
                         </div>
+
+                        {{-- input partita iva --}}
                         <div class="mb-4 row">
                             <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('P.IVA') }}</label>
 
@@ -81,6 +90,8 @@
                                 <input id="vat" type="text" class="form-control" name="vat" value="IT{{ old('vat') }}" required autofocus>
                             </div>
                         </div>
+
+                        {{-- input numero cellulare ristoratore --}}
                         <div class="mb-4 row">
                             <label for="mobile_phone" class="col-md-4 col-form-label text-md-right">{{ __('Cellulare') }}</label>
 
@@ -88,6 +99,21 @@
                                 <input id="mobile_phone" type="text" class="form-control" name="mobile_phone" value="+39 {{ old('mobile_phone') }}" required autofocus>
                             </div>
                         </div>
+
+                        {{-- associazione tipologie di cucina --}}
+                        <div class="mb-4 row">
+                            <label for="typologies" class="col-md-4 col-form-label text-md-right">{{ __('Scegli il tipo di cucina:') }}</label>
+
+                            <div class="col-md-6">
+                                @foreach ($typologies as $typology)
+                                    <div>
+                                        <input type="checkbox" name="typologies[]" id="typologies" value="{{ $typology->id }}">
+                                        {{ $typology -> name }}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Restaurant;
+use App\Models\Typology;
 
 class RegisteredUserController extends Controller
 {
@@ -21,7 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $typologies = Typology :: all();
+        return view('auth.register', compact('typologies'));
     }
 
     /**
@@ -44,22 +46,26 @@ class RegisteredUserController extends Controller
             'mobile_phone' => $request->mobile_phone
         ]);
 
-        $restaurantId = $restaurant->id;
+        if ($request->has('typologies')) {
+            $restaurant->typologies()->attach($request->typologies);
+        }
 
+        $restaurantId = $restaurant->id;
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'restaurant_id' => $restaurantId
         ]);
-
-// ...
-
-
+        
+        // ...
+        
+        
         event(new Registered($user));
-
+        
         Auth::login($user);
-
+        
         return redirect(RouteServiceProvider::HOME);
     }
 }
