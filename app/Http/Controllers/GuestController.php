@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Dish;
@@ -10,15 +11,44 @@ class GuestController extends Controller
 {
     public function index()
     {
-        $restaurants = Restaurant::all();
-        return view("welcome", compact('restaurants'));
+        $restaurant = Restaurant::find(Auth::user()->restaurant_id);
+        return view("restaurants.showRestaurant", compact('restaurant'));
     }
 
     public function show($id)
     {
-        $restaurant = Restaurant::findOrFail($id);
         $dishes = Dish::all();
+        $restaurant = Restaurant::findOrFail($id);
+         
+    
+        // Verifica se il ristorante esiste
+        if (!$restaurant) {
+            return redirect('/')->with('error', 'Ristorante non trovato');
+        }
+    
+        // Verifica se l'utente è loggato
+        if (!Auth::check()) {
+            return redirect('/')->with('error', 'Devi essere loggato per accedere a questa pagina');
+            dd($restaurant);
+        }
+    
+        // Verifica se l'utente loggato è il proprietario del ristorante
+        if (Auth::user()->restaurant_id == $restaurant->id) {
+            return view('show', ['restaurant' => $restaurant, 'dishes' => $dishes]);
+        } else {
+            return redirect('/')->with('error', 'Non autorizzato');
+        }
+       
+    }
 
-        return view("show", compact('restaurant', 'dishes'));
+    public function edit($id)
+    {
+        $restaurant = Restaurant::find(Auth::user()->restaurant_id);
+        $restaurant = Restaurant :: all();
+
+        return view('restaurants.editRestaurant', compact('restaurant',));
     }
 }
+
+
+

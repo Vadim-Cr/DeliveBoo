@@ -20,11 +20,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // ROTTA INDEX
-Route::get('/', [GuestController::class, 'index'])->name('welcome');
+
 
 // ROTTA SHOW
-Route::get('/show/{id}', [GuestController::class, 'show'])
-    ->name('show');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [GuestController::class, 'index'])->name('restaurants.showRestaurant');
+    Route::get('/edit/{id}', [GuestController::class, 'edit'])->name('restaurants.editRestaurant');
+    Route::get('/show/{id}', [GuestController::class, 'show'])->name('show');
+});
 
 
 Route::get('/dashboard', function () {

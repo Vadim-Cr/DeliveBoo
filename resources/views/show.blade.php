@@ -9,6 +9,9 @@
 
             <h1 class='text-center bg-dark text-light'>
                 {{$restaurant -> activity_name}}
+                <a class="text-decoration-none btn btn-light" href="{{ route('restaurants.editRestaurant', $restaurant -> id)}}">
+                    Modifica
+                </a>
             </h1>
 
             <div>
