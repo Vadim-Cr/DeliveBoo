@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Registrati') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" onsubmit="event.preventDefault(); validatePassword()">
+                    <form id="form" method="POST" action="{{ route('register') }}">
                         @csrf
                         {{-- input nome ristoratore --}}
                         <div class="mb-4 row">
@@ -45,7 +45,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" minlength="8" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                             </div>
                         </div>
@@ -125,28 +125,38 @@
                                         {{ $typology -> name }}
                                     </div>
                                 @endforeach
-                                <input type="radio" id="checkIndicator" name="checkIndicator" required>
-                                {{-- funzione controllo almeno una checkbox selezionata --}}
-                                <script>
-                                    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                                    const checkIndicator = document.getElementById('checkIndicator');
-
-                                    checkboxes.forEach(checkbox => {
-                                    checkbox.addEventListener('change', function () {
-                                        const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-                                        checkIndicator.checked = anyChecked;
-                                    });
-                                </script> 
+                                <span id="checkError" class="text-danger"></span>
+                                <input type="radio" id="checkIndicator" name="checkIndicator" class="d-none" required>
                             </div>
                         </div>
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" id="submit" class="btn btn-primary">
                                     {{ __('Registrati') }}
                                 </button>
                             </div>
                         </div>
+                        {{-- funzione controllo almeno una checkbox selezionata --}}
+                        <script>
+                            const btnSubmit = document.getElementById('submit');
+                            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                            const checkIndicator = document.getElementById('checkIndicator');
+                            const checkboxError = document.getElementById('checkError');
+
+                            checkboxes.forEach(checkbox => {
+                                checkbox.addEventListener('change', function () {
+                                    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                                    checkIndicator.checked = anyChecked;
+                                })
+                            });
+
+                            btnSubmit.addEventListener('click', function () {
+                                if (!checkIndicator.checked) {
+                                    checkboxError.textContent = "Associa almeno una tipologia di cucina";
+                                }
+                            });
+                        </script> 
                     </form>
                 </div>
             </div>
