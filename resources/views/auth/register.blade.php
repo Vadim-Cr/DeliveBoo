@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Registrati') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" onsubmit="event.preventDefault(); validatePassword()">
+                    <form method="POST" action="{{ route('register') }}" onsubmit="event.preventDefault(); validatePassword()" enctype="multipart/form-data">
                         @csrf
                         {{-- input nome ristoratore --}}
                         <div class="mb-4 row">
@@ -84,6 +84,13 @@
 
                             <div class="col-md-6">
                                 <input id="activity_name" type="text" class="form-control" name="activity_name" value="{{ old('activity_name') }}" required autofocus>
+                            </div>
+                        </div>
+                        <div class="mb-4 row">
+                            <label for="image_path" class="col-md-4 col-form-label text-md-right">Image_path</label>
+
+                            <div class="col-md-6">
+                                <input  type="file" class="form-control" id="image_path">
                             </div>
                         </div>
 
