@@ -125,6 +125,18 @@
                                         {{ $typology -> name }}
                                     </div>
                                 @endforeach
+                                <input type="radio" id="checkIndicator" name="checkIndicator" required>
+                                {{-- funzione controllo almeno una checkbox selezionata --}}
+                                <script>
+                                    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                                    const checkIndicator = document.getElementById('checkIndicator');
+
+                                    checkboxes.forEach(checkbox => {
+                                    checkbox.addEventListener('change', function () {
+                                        const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                                        checkIndicator.checked = anyChecked;
+                                    });
+                                </script> 
                             </div>
                         </div>
 
