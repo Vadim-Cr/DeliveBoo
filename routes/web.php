@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/', [GuestController::class, 'index'])->name('restaurants.showRestaurant');
     Route::get('/edit/{id}', [GuestController::class, 'edit'])->name('restaurants.editRestaurant');
+    Route::put('/update/{id}', [GuestController::class, 'update'])->name('update');
     Route::get('/show/{id}', [GuestController::class, 'show'])->name('show');
 });
 
@@ -37,7 +38,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
