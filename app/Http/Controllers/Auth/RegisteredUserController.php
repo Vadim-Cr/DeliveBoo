@@ -38,9 +38,11 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        dd($data);
 
         $restaurant = Restaurant::create([
             'activity_name' => $request->activity_name,
+            'image_path' => 'required|file|image|max:2048',
             'address' => $request->address,
             'vat' => $request->vat,
             'mobile_phone' => $request->mobile_phone
