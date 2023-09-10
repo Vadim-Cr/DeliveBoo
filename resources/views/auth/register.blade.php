@@ -86,11 +86,13 @@
                                 <input id="activity_name" type="text" class="form-control" name="activity_name" value="{{ old('activity_name') }}" required autofocus>
                             </div>
                         </div>
+
+                        {{-- input immagine --}}
                         <div class="mb-4 row">
-                            <label for="image_path" class="col-md-4 col-form-label text-md-right">Image_path</label>
+                            <label for="image_path" class="col-md-4 col-form-label text-md-right">Immagine</label>
 
                             <div class="col-md-6">
-                                <input  type="file" class="form-control" id="image_path">
+                                <input  type="file" class="form-control" name='image_path' id="image_path" accept="image/*" max="2097152">
                             </div>
                         </div>
 

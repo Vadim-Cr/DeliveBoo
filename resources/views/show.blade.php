@@ -13,6 +13,9 @@
                     Modifica
                 </a>
             </h1>
+            <div>
+                <img src="{{asset('storage/' . $restaurant->image_path)}}" width='200px' alt="">
+            </div>
 
             <div>
                 <span><strong>Indirizzo:</strong> {{$restaurant -> address}}</span>
@@ -21,9 +24,7 @@
             <div>
                 <span><strong>Tel:</strong> {{$restaurant -> mobile_phone}}</span>
             </div>
-
         </div>
-
     </div>
 
 </div>
