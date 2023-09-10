@@ -30,4 +30,23 @@ class DishController extends Controller
 
         return redirect()->route('show', ['id' => $restaurant_id]);
     }
+
+    public function edit($id){
+        $dish = Dish :: findOrFail($id);
+
+        return view('dish-edit', compact('dish'));
+    }
+    public function update(Request $request, $id){
+
+        $data = $request -> all();
+        $user = Auth::user(); 
+        $restaurant_id = $user->id;
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+
+        $dish = Dish :: findOrFail($id);
+        $dish -> update($data);
+
+        return redirect() -> route('show', ['id' => $restaurant_id]);
+
+    }
 }
