@@ -43,9 +43,21 @@
                     <div class="card">
                         <h4><strong>{{ $dish->name }}</strong></h4>
 
+                        <img src="{{ $dish->image_path }}" width="200px" alt="">
+
                         <h6>Descrizione:</h6>
                         <p>
                             {{ $dish->description }}
+                        </p>
+
+                        <h6>Prezzo:</h6>
+                        <p>
+                            {{ $dish->price }}
+                        </p>
+
+                        <h6>Disponibile:</h6>
+                        <p>
+                            {{ $dish->availability }}
                         </p>
                     </div>
 
@@ -53,7 +65,11 @@
 
             @endif
         @endforeach
-
+        <a class="text-decoration-none" href="{{ route('dish.create')}}">
+            <button class="btn btn-success">
+                AGGIUNGI UN NUOVO PIATTO
+            </button>
+        </a>
 
     </div>
 
