@@ -10,6 +10,9 @@
             <h1 class='text-center bg-dark text-light p-2 rounded'>
                 {{$restaurant -> activity_name}}
             </h1>
+            <div>
+                <img src="{{asset('storage/' . $restaurant->image_path)}}" width='200px' alt="">
+            </div>
             
             <div class="m-2">
                 <span><strong>Indirizzo:</strong> {{$restaurant -> address}}</span>
@@ -21,9 +24,7 @@
             <a class="text-decoration-none btn bg-warning" href="{{ route('restaurants.editRestaurant', $restaurant -> id)}}">
                 Modifica il tuo Ristorante
             </a>
-
         </div>
-
     </div>
 
 </div>
