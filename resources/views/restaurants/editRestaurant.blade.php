@@ -25,14 +25,14 @@
                 <div class="form-group">
                     <label for="activity_name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Attività') }}</label>
                     <div class="col">
-                        <input id="activity_name" type="text" class="form-control" name="activity_name" value="{{ old('activity_name') }}" required autofocus>
+                        <input id="activity_name" type="text" class="form-control" name="activity_name" value="{{ $restaurant->activity_name }}" required autofocus>
                     </div>
                 </div>
         
                 <div class="form-group">
-                    <label for="image_path" class="col-md-4 col-form-label text-md-right">Image</label>
+                    <label for="image_path" class="col-md-4 col-form-label text-md-right">Immagine</label>
                     <div class="col">
-                    <input type="text" name="image_path" id="image_path" value="{{ $restaurant->image_path }}" class="form-control">
+                    <input type="file" name="image_path" id="image_path" value="{{ $restaurant->image_path }}" class="form-control" accept="image/*" max="2097152">
                     </div>
                 </div>
         
