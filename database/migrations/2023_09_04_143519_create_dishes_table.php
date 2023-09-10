@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('name', 64);
-            $table->string('image_path', 255);
+            $table->string('image_path', 255) -> nullable();
             $table->text('description') -> nullable();
             $table->float('price', 10, 2);
-            $table->boolean('availability');
+            $table->boolean('availability')->default(0);
 
             $table->timestamps();
         });

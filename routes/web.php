@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\DishController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/show/{id}', [GuestController::class, 'show'])->name('show');
 });
 
+Route::get('/dishes/create', [DishController::class,'create'])->name('dish.create');
+
+Route::post('/dishes/store', [DishController::class,'store'])->name('dish.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
