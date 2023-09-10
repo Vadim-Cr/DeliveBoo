@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Dish;
@@ -51,14 +52,19 @@ class GuestController extends Controller
     }
     
     public function update(Request $request, $id) {
-
         $restaurant = Restaurant::find(Auth::user()->restaurant_id);
-        $data = $request -> all();
-
-        $restaurant -> update($data);
-        $restaurant -> typologies() -> sync($data['typologies']);
-
-        return redirect() -> route('show', $restaurant -> id);
+        $data = $request->all();
+    
+        if($request->hasFile('image_path')) {
+            $imagePath = Storage::put('uploads', $request->file('image_path'));
+            $data['image_path'] = $imagePath;
+        }
+        // Se non c'è un nuovo file, l'immagine precedente rimarrà invariata
+    
+        $restaurant->update($data);
+        $restaurant->typologies()->sync($data['typologies']);
+    
+        return redirect()->route('show', $restaurant->id);
     }
     
 }
