@@ -36,6 +36,12 @@ Route::get('/dishes/create', [DishController::class,'create'])->name('dish.creat
 
 Route::post('/dishes/store', [DishController::class,'store'])->name('dish.store');
 
+Route :: get('/dishes/edit/{id}',[DishController::class,'edit'])
+-> name('dish.edit');
+
+Route :: put('/dishes/update/{id}',[DishController::class,'update'])
+ -> name('dish.update');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

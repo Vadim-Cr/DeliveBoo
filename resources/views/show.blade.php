@@ -42,6 +42,9 @@
 
                     <div class="card">
                         <h4><strong>{{ $dish->name }}</strong></h4>
+                        <a href="{{route('dish.edit', $dish -> id) }}" class="text-decoration-none">
+                            <button class="btn btn-danger w-25 m-auto">Modifica</button>
+                        </a>
 
                         <img src="{{ asset('storage/' . $dish->image_path) }}" width="200px" alt="">
 
