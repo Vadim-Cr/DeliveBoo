@@ -12,7 +12,7 @@
             </h1>
             <div>
                 <img src="{{asset('storage/' . $restaurant->image_path)}}" width='200px' alt="">
-            </div>
+            </div> 
             
             <div class="m-2">
                 <span><strong>Indirizzo:</strong> {{$restaurant -> address}}</span>
@@ -43,7 +43,7 @@
                     <div class="card">
                         <h4><strong>{{ $dish->name }}</strong></h4>
 
-                        <img src="{{ $dish->image_path }}" width="200px" alt="">
+                        <img src="{{ asset('storage/' . $dish->image_path) }}" width="200px" alt="">
 
                         <h6>Descrizione:</h6>
                         <p>

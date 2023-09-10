@@ -46,14 +46,14 @@
                 <div class="form-group">
                     <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('P.IVA') }}</label>
                     <div class="col">
-                        <input id="vat" type="text" class="form-control" name="vat" value="{{ old('vat','IT') }}" required autofocus minlength='13' maxlength='13'>
+                        <input id="vat" type="text" class="form-control" name="vat" value="{{ $restaurant->vat }}"" required autofocus minlength='13' maxlength='13'>
                     </div>
                 </div>
         
                 <div class="form-group">
                     <label for="mobile_phone" class="col-md-4 col-form-label text-md-right">{{ __('Cellulare') }}</label>
                     <div class="col">
-                        <input id="mobile_phone" type="text" class="form-control" name="mobile_phone" value="{{ old('mobile_phone', '+39 ') }}" required autofocus minlength='13' maxlength='14'>
+                        <input id="mobile_phone" type="text" class="form-control" name="mobile_phone" value="{{ $restaurant->mobile_phone}}" required autofocus minlength='13' maxlength='14'>
                     </div>
                 </div>
         
@@ -78,6 +78,26 @@
                 </div>
         
                 <button type="submit" class="btn btn-primary my-3">Update</button>
+
+                <script>
+                            const btnSubmit = document.getElementById('submit');
+                            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                            const checkIndicator = document.getElementById('checkIndicator');
+                            const checkboxError = document.getElementById('checkError');
+
+                            checkboxes.forEach(checkbox => {
+                                checkbox.addEventListener('change', function () {
+                                    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                                    checkIndicator.checked = anyChecked;
+                                })
+                            });
+
+                            btnSubmit.addEventListener('click', function () {
+                                if (!checkIndicator.checked) {
+                                    checkboxError.textContent = "Associa almeno una tipologia di cucina";
+                                }
+                            });
+                </script> 
             </form>
         </div>
     </div>
