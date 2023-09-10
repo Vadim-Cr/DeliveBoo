@@ -6,10 +6,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Inserisci un nuovo piatto') }}</div>
+                <div class="card-header">{{ __('Aggiorna il piatto') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('dish.update', $dish -> id) }}" >
+                    <form method="POST" action="{{ route('dish.update', $dish -> id) }}" enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
                     

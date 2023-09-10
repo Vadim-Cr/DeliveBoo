@@ -4,34 +4,34 @@
 
 
 <div class="container d-flex justify-content-center my-3">
-        <div class="row">
-            <div class="card p-3">
-
+    <div class="row">
+        <div class="card p-3">
             <h1 class='text-center bg-dark text-light p-2 rounded'>
                 {{$restaurant -> activity_name}}
             </h1>
-            <div>
-                <img src="{{asset('storage/' . $restaurant->image_path)}}" width='200px' alt="">
-            </div> 
+            
+            <img src="{{asset('storage/' . $restaurant->image_path)}}" width='200px' class="d-block m-auto my-2"> 
             
             <div class="m-2">
-                <span><strong>Indirizzo:</strong> {{$restaurant -> address}}</span>
+                <strong>Indirizzo:</strong> {{$restaurant -> address}}
             </div>
             
             <div class="m-2">
-                <span><strong>Tel:</strong> {{$restaurant -> mobile_phone}}</span>
+                <strong>Tel:</strong> {{$restaurant -> mobile_phone}}
+            </div>
+            <div class="m-2">
+                <strong>P.IVA:</strong> {{$restaurant -> vat}}
             </div>
             <a class="text-decoration-none btn bg-warning" href="{{ route('restaurants.editRestaurant', $restaurant -> id)}}">
                 Modifica il tuo Ristorante
             </a>
         </div>
     </div>
-
 </div>
 
 <div class="container-fluid text-center">
 
-    <h2>LISTA PIATTI</h2>
+    <h2 class="text-center bg-dark text-light p-1 my-3 rounded w-25 m-auto">LISTA PIATTI</h2>
 
     <div class="row justify-content-center">
 
@@ -39,43 +39,36 @@
             @if ($dish->restaurant_id == $restaurant->id)
 
                 <div class="col-4 my-2">
-
                     <div class="card">
                         <h4><strong>{{ $dish->name }}</strong></h4>
-                        <a href="{{route('dish.edit', $dish -> id) }}" class="text-decoration-none">
-                            <button class="btn btn-danger w-25 m-auto">Modifica</button>
+                        <a href="{{route('dish.edit', $dish -> id) }}" class="text-decoration-none btn btn-warning w-25 m-auto">
+                            Modifica
                         </a>
 
-                        <img src="{{ asset('storage/' . $dish->image_path) }}" width="200px" alt="">
+                        <img src="{{ asset('storage/' . $dish->image_path) }}" width="200px" class="d-block m-auto my-2">
 
-                        <h6>Descrizione:</h6>
-                        <p>
+                        <span>
+                            <strong>Descrizione:</strong>
                             {{ $dish->description }}
-                        </p>
-
-                        <h6>Prezzo:</h6>
-                        <p>
-                            {{ $dish->price }}
-                        </p>
-
-                        <h6>Disponibile:</h6>
-                        <p>
+                        </span>
+                        <span>
+                            <strong>Prezzo:</strong>
+                            &euro;{{ $dish->price }}
+                        </span>
+                        <span>
+                            <strong>Disponibile:</strong>
                             {{ $dish->availability }}
-                        </p>
+                        </span>
                     </div>
-
                 </div>
-
             @endif
         @endforeach
         <a class="text-decoration-none" href="{{ route('dish.create')}}">
             <button class="btn btn-success">
-                AGGIUNGI UN NUOVO PIATTO
+                Aggiungi Un Nuovo Piatto
             </button>
         </a>
-
     </div>
-
 </div>
 
 @endsection

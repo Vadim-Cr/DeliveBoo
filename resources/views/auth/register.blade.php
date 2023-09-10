@@ -89,7 +89,7 @@
 
                         {{-- input immagine --}}
                         <div class="mb-4 row">
-                            <label for="image_path" class="col-md-4 col-form-label text-md-right">Immagine</label>
+                            <label for="image_path" class="col-md-4 col-form-label text-md-right">{{ __('Immagine') }}</label>
 
                             <div class="col-md-6">
                                 <input  type="file" class="form-control" name='image_path' id="image_path" accept="image/*" max="2097152">

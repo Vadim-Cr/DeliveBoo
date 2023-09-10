@@ -11,18 +11,15 @@ use App\Models\Typology;
 
 class GuestController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         $restaurant = Restaurant::find(Auth::user()->restaurant_id);
         return view("restaurants.showRestaurant", compact('restaurant'));
     }
 
-    public function show($id)
-    {
+    public function show($id) {
         $dishes = Dish::all();
         $restaurant = Restaurant::findOrFail($id);
          
-    
         // Verifica se il ristorante esiste
         if (!$restaurant) {
             return redirect('/')->with('error', 'Ristorante non trovato');
@@ -40,11 +37,9 @@ class GuestController extends Controller
         } else {
             return redirect('/')->with('error', 'Non autorizzato');
         }
-       
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         $restaurant = Restaurant::find(Auth::user()->restaurant_id);
         $typologies = Typology :: all();
 

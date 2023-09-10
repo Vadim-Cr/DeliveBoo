@@ -50,11 +50,15 @@ class DishController extends Controller
         $user = Auth::user(); 
         $restaurant_id = $user->id;
         $restaurant = Restaurant::findOrFail($restaurant_id);
-
         $dish = Dish :: findOrFail($id);
+
+        if($request->hasFile('image_path')) {
+            $imagePath = Storage::put('uploads', $request->file('image_path'));
+            $data['image_path'] = $imagePath;
+        }
+
         $dish -> update($data);
 
         return redirect() -> route('show', ['id' => $restaurant_id]);
-
     }
 }
