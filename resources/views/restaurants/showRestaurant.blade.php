@@ -15,7 +15,9 @@
                 <h3 class="text-center">
                     {{$restaurant -> activity_name}}
                 </h3>
-                <img src="{{asset('storage/' . $restaurant->image_path)}}" width='200px' class="d-block m-auto my-2">
+
+                <img src="{{ Storage::exists($restaurant->image_path) ? asset('storage/' . $restaurant->image_path) : $restaurant->image_path }}" width='200px' class="d-block m-auto my-2">
+
                 <div>
                     <strong>Indirizzo:</strong> {{$restaurant -> address}}
                 </div>

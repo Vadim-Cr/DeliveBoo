@@ -10,7 +10,7 @@
                 {{$restaurant -> activity_name}}
             </h1>
             
-            <img src="{{asset('storage/' . $restaurant->image_path)}}" width='200px' class="d-block m-auto my-2"> 
+            <img src="{{ Storage::exists($restaurant->image_path) ? asset('storage/' . $restaurant->image_path) : $restaurant->image_path }}" width='200px' class="d-block m-auto my-2">
             
             <div class="m-2">
                 <strong>Indirizzo:</strong> {{$restaurant -> address}}
@@ -45,7 +45,7 @@
                             Modifica
                         </a>
 
-                        <img src="{{ asset('storage/' . $dish->image_path) }}" width="200px" class="d-block m-auto my-2">
+                        <img src="{{ Storage::exists($dish->image_path) ? asset('storage/' . $dish->image_path) : $dish->image_path }}" width='200px' class="d-block m-auto my-2">
 
                         <span>
                             <strong>Descrizione:</strong>

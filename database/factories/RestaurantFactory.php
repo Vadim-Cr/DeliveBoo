@@ -16,12 +16,18 @@ class RestaurantFactory extends Factory
      */
     public function definition()
     {
+        $photoLink = [
+            "https://www.081pizzeria.it/app/uploads/081-pizzeria-interno-1-scaled.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXwKhCfSi7gmkdoH3CiNmKOrehOIwDGFCj2tEtYLQWEA&s",
+            "https://www.ristorantedarosa.com/files/.thumbs/home/slider-2022/2000x/da-rosa-ristorante-como-location.jpg"
+        ];
+
         return [
-                'activity_name'=> fake() -> randomElement(['Pizzeria', 'Gelateria', 'Ristorante', 'Trattoria']) . ' ' .  fake('it_IT') ->lastName(),
-                'image_path'=> fake() -> imageUrl('https://unsplash.com/it/foto/rDEOVtE7vOs'),
-                'address'=> fake('it_IT') -> streetAddress(),
-                'vat'=> fake() -> regexify('IT[0-9]{11}'),
-                'mobile_phone'=> '+39 3' . fake() -> regexify('[0-9]{9}')
+            'activity_name'=> fake() -> randomElement(['Pizzeria', 'Gelateria', 'Ristorante', 'Trattoria']) . ' ' .  fake('it_IT') ->lastName(),
+            'image_path'=> fake() -> randomElement($photoLink),
+            'address'=> fake('it_IT') -> streetAddress(),
+            'vat'=> fake() -> regexify('IT[0-9]{11}'),
+            'mobile_phone'=> '+39 3' . fake() -> regexify('[0-9]{9}')
         ];
     }
 }
