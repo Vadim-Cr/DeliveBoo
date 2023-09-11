@@ -57,6 +57,10 @@ class DishController extends Controller
             $data['image_path'] = $imagePath;
         }
 
+            // Converti il prezzo in un formato compatibile con MySQL
+        if (isset($data['price'])) {
+            $data['price'] = str_replace(',', '.', $data['price']);
+        }
         $dish -> update($data);
 
         return redirect() -> route('show', ['id' => $restaurant_id]);
