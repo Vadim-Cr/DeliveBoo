@@ -123,21 +123,26 @@
                             </div>
                         </div>
 
-                        {{-- associazione tipologie di cucina --}}
-                        <div class="mb-4 row">
-                            <label for="typologies" class="col-md-4 col-form-label text-md-right">{{ __('Scegli il tipo di cucina:') }}</label>
+                        {{-- checkbox associazione ristorante --}}
+                    <div class="mb-4 row">
+                        <label for="typologies" class="col-md-4 col-form-label text-md-right">{{ __('Scegli il tipo di cucina:') }}</label>
 
-                            <div class="col-md-6">
-                                @foreach ($typologies as $typology)
-                                    <div>
-                                        <input type="checkbox" name="typologies[]" id="typologies" value="{{ $typology->id }}">
-                                        {{ $typology -> name }}
-                                    </div>
-                                @endforeach
-                                <span id="checkError" class="text-danger"></span>
-                                <input type="radio" id="checkIndicator" name="checkIndicator" class="d-none" required>
-                            </div>
+                        <div class="col-md-6">
+                            @foreach ($typologies as $typology)
+                                <div>
+                                    <input 
+                                    type="checkbox" 
+                                    name="typologies[]" 
+                                    value="{{ $typology->id }}"
+                                    id="typology-{{ $typology->id }}"
+                                    >
+                                    {{ $typology -> name }}
+                                </div>
+                            @endforeach
+                            <span id="checkError" class="text-danger"></span>
+                            <input type="radio" id="checkIndicator" name="checkIndicator" class="d-none" required>
                         </div>
+                    </div>
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">

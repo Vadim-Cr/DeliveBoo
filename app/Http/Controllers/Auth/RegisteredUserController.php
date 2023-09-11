@@ -23,7 +23,12 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         $typologies = Typology :: all();
+
+        
+        // $restaurant->typologies()->sync($data['typologies']);
+        
         return view('auth.register', compact('typologies'));
+
     }
 
     /**
@@ -57,6 +62,8 @@ class RegisteredUserController extends Controller
             'mobile_phone' => $data['mobile_phone'],
             'image_path' => $imagePath
         ]);
+
+        $restaurant->typologies()->sync($request->input('typologies'));
 
         $user = User::create([
             'name' => $data['name'],

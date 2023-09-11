@@ -44,7 +44,25 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Prezzo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="text" placeholder="00.00" pattern="\d+\.\d{2}" title="(esempio: 10.00)" class="form-control" name="price" value="{{ old('price') }}" required autofocus>
+                                <!-- Il tuo codice HTML e Blade qui sopra -->
+                                <input id="price" type="text" class="form-control" name="price" value="{{old('price')}}" required autofocus>
+
+                                <!-- Inserisci il tuo script JavaScript qui sotto -->
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        const priceInput = document.getElementById("price");
+
+                                        priceInput.addEventListener("blur", function() {
+                                            const value = parseFloat(this.value.replace(",", "."));
+                                            
+                                            if (!isNaN(value)) {
+                                                this.value = value.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                            } else {
+                                                alert('Attenzione, il dato inserito non è un numero!')
+                                            }
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
 

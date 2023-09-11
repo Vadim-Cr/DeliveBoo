@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('description') -> nullable();
             $table->float('price', 10, 2);
             $table->boolean('availability')->default(0);
+            $table->softDeletes();
 
             $table->timestamps();
         });
