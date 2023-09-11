@@ -39,6 +39,9 @@ Route::post('/dishes/store', [DishController::class,'store'])->name('dish.store'
 Route :: get('/dishes/edit/{id}',[DishController::class,'edit'])
 -> name('dish.edit');
 
+Route :: delete('/dishes/delete/{id}',[DishController::class,'destroy'])
+-> name('dish.delete');
+
 Route :: put('/dishes/update/{id}',[DishController::class,'update'])
  -> name('dish.update');
 

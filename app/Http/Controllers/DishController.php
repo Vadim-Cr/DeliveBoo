@@ -33,6 +33,10 @@ class DishController extends Controller
         $dish->image_path = $imagePath;
         $dish->availability = $availability;
         $dish->restaurant_id = $restaurant_id;
+        // Converti il prezzo in un formato compatibile con MySQL
+        if (isset($dish['price'])) {
+            $dish['price'] = str_replace(',', '.', $dish['price']);
+        }
 
         $dish->save();
 
@@ -43,6 +47,13 @@ class DishController extends Controller
         $dish = Dish :: findOrFail($id);
 
         return view('dish-edit', compact('dish'));
+    }
+
+    public function destroy($id){
+        $dish = Dish :: findOrFail($id);
+        $dish->delete();  // Questo eseguirà una "soft delete" se hai configurato il modello correttamente
+
+        return redirect() ->route('show', ['id' => $dish->restaurant_id]);;
     }
     public function update(Request $request, $id){
 

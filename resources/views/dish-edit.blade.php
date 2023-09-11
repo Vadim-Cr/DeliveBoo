@@ -18,7 +18,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome del Piatto') }}</label>
                     
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{$dish -> name}}"  required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{$dish -> name}}"  required autocomplete="name" autofocus >
                             </div>
                         </div>
                     
@@ -28,6 +28,9 @@
                             
                             <div class="col-md-6">
                                 <input  type="file" class="form-control" name='image_path' id="image_path" accept="image/*" max="2097152">
+                                @if($dish->image_path)
+                                    <img src="{{ Storage::exists($dish->image_path) ? asset('storage/' . $dish->image_path) : $dish->image_path }}" width='200px' class="d-block m-auto my-2">
+                                @endif
                             </div>
                         </div>
                         
@@ -59,7 +62,7 @@
                                             if (!isNaN(value)) {
                                                 this.value = value.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                                             } else {
-                                                // Gestisci il caso in cui l'input non è un numero, se necessario
+                                                alert('Attenzione, il dato inserito non è un numero!')
                                             }
                                         });
                                     });

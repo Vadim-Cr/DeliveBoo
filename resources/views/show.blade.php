@@ -41,9 +41,16 @@
                 <div class="col-4 my-2">
                     <div class="card">
                         <h4><strong>{{ $dish->name }}</strong></h4>
-                        <a href="{{route('dish.edit', $dish -> id) }}" class="text-decoration-none btn btn-warning w-25 m-auto">
-                            Modifica
-                        </a>
+                        <div class="d-flex justify-content-around">
+                            <a href="{{route('dish.edit', $dish -> id) }}" class="text-decoration-none btn btn-warning w-25 m-2">
+                                Modifica
+                            </a>
+                            <form action="{{ route('dish.delete', $dish->id) }}" method="POST" class="m-2">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </form>
+                        </div>
 
                         <img src="{{ Storage::exists($dish->image_path) ? asset('storage/' . $dish->image_path) : $dish->image_path }}" width='200px' class="d-block m-auto my-2">
 
@@ -64,7 +71,7 @@
             @endif
         @endforeach
         <a class="text-decoration-none" href="{{ route('dish.create')}}">
-            <button class="btn btn-success">
+            <button class="btn btn-success m-4">
                 Aggiungi Un Nuovo Piatto
             </button>
         </a>
