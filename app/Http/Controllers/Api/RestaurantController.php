@@ -16,10 +16,13 @@ class RestaurantController extends Controller
         ]);
     }
 
-    public function typologiesIndex() {
-
-            
+    public function typologiesIndex() {   
         $restaurantWithTypologies = Restaurant::with('typologies')->get();
         return response()->json($restaurantWithTypologies);
+    }
+
+    public function getRestaurantDetail($id) {
+        $restaurant = Restaurant::with('dishes')->find($id);
+        return response()->json($restaurant);
     }
 }
