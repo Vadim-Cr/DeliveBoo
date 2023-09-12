@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RestaurantController;
-
+use App\Http\Controllers\Api\SearchController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,9 +17,13 @@ use App\Http\Controllers\Api\RestaurantController;
 
 Route::prefix('/v1') -> group(function() {
     Route::get('/test-api', [RestaurantController::class, 'testApi']);
+    Route::get('/test-search-api', [SearchController::class, 'testApi']);
     Route::get('/restaurant_typology', [RestaurantController::class, 'typologiesIndex']);
+    Route::get('/search_typology', [SearchController::class, 'searchByTypology']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
