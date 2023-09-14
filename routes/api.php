@@ -19,7 +19,7 @@ Route::prefix('/v1') -> group(function() {
     Route::get('/test-api', [RestaurantController::class, 'testApi']);
     Route::get('/test-search-api', [SearchController::class, 'testApi']);
     Route::get('/restaurant_typology', [RestaurantController::class, 'typologiesIndex']);
-    Route::get('restaurant_typology/{id}', [RestaurantController::class, 'getRestaurantDetail']);
+    Route::get('/restaurant_typology/{id}', [RestaurantController::class, 'getRestaurantDetail']);
     Route::get('/search_typology', [SearchController::class, 'searchByTypology']);
 });
 
