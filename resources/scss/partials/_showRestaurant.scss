@@ -1,0 +1,33 @@
+@use './shortcut';
+
+#showR {
+    .card {
+        border: hidden;
+        position: relative;
+
+        img {
+            width: 90%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        p {
+            font-size: .8rem;
+            position: relative;
+            top: -10px;
+            margin-left: 45px;
+        }
+    }
+
+    .right {
+        border-left: 1px solid #000;
+        padding-top: 15px;
+        line-height: 3rem;
+
+        i {
+            text-align: center;
+            width: 25px;
+        }
+    }
+}
