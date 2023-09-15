@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,6 +22,7 @@ Route::prefix('/v1') -> group(function() {
     Route::get('/restaurant_typology', [RestaurantController::class, 'typologiesIndex']);
     Route::get('/restaurant_typology/{id}', [RestaurantController::class, 'getRestaurantDetail']);
     Route::get('/search_typology', [SearchController::class, 'searchByTypology']);
+    Route::post('/save_payments', [PaymentController::class, 'salvaDatiPayment']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
