@@ -3,56 +3,20 @@
 
 
 
-<div class="container d-flex justify-content-center my-3">
-    <div class="row">
-        <div class="card p-3">
-            <h1 class='text-center bg-dark text-light p-2 rounded'>
-                {{$restaurant -> activity_name}}
-            </h1>
-            
-            <img src="{{ Storage::exists($restaurant->image_path) ? asset('storage/' . $restaurant->image_path) : $restaurant->image_path }}" width='200px' class="d-block m-auto my-2">
-            
-            <div class="m-2">
-                <strong>Indirizzo:</strong> {{$restaurant -> address}}
-            </div>
-            
-            <div class="m-2">
-                <strong>Tel:</strong> {{$restaurant -> mobile_phone}}
-            </div>
-            <div class="m-2">
-                <strong>P.IVA:</strong> {{$restaurant -> vat}}
-            </div>
-            <a class="text-decoration-none btn bg-warning" href="{{ route('restaurants.editRestaurant', $restaurant -> id)}}">
-                Modifica il tuo Ristorante
-            </a>
-        </div>
-    </div>
-</div>
+<div id="showD" class="container">
 
-<div class="container-fluid text-center">
-
-    <h2 class="text-center bg-dark text-light p-1 my-3 rounded w-25 m-auto">LISTA PIATTI</h2>
+    <h2 class="mb-3 text-center">Menù</h2>
 
     <div class="row justify-content-center">
 
         @foreach ($dishes as $dish)
             @if ($dish->restaurant_id == $restaurant->id)
 
-                <div class="col-4 my-2">
-                    <div class="card">
+                <div class="col-5 my-2">
+                    <div class="card p-3">
                         <h4><strong>{{ $dish->name }}</strong></h4>
-                        <div class="d-flex justify-content-around">
-                            <a href="{{route('dish.edit', $dish -> id) }}" class="text-decoration-none btn btn-warning w-25 m-2">
-                                Modifica
-                            </a>
-                            <form action="{{ route('dish.delete', $dish->id) }}" method="POST" class="m-2">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Elimina</button>
-                            </form>
-                        </div>
 
-                        <img src="{{ Storage::exists($dish->image_path) ? asset('storage/' . $dish->image_path) : $dish->image_path }}" width='200px' class="d-block m-auto my-2">
+                        <img src="{{ Storage::exists($dish->image_path) ? asset('storage/' . $dish->image_path) : $dish->image_path }}" width="150px" class="my-2">
 
                         <span>
                             <strong>Descrizione:</strong>
@@ -66,6 +30,18 @@
                             <strong>Disponibile:</strong>
                             {{ $dish->availability }}
                         </span>
+                        <div class="buttons">
+                            <a href="{{route('dish.edit', $dish -> id) }}" class="button btn">
+                                <i class="fa-solid fa-pen-to-square"></i> Modifica
+                            </a>
+                            <form action="{{ route('dish.delete', $dish->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="button btn">
+                                    <i class="fa-solid fa-trash-can"></i>Elimina
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             @endif
@@ -77,5 +53,4 @@
         </a>
     </div>
 </div>
-
 @endsection

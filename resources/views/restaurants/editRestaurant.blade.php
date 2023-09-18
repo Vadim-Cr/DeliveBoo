@@ -1,15 +1,9 @@
 @extends('layouts.app')
-@section('content')
+@section('content') 
 
-<h1 class='text-center bg-dark text-light py-2'>
-    DeliveBoo
-</h1>
-
-<h1 class="text-center">{{ $restaurant -> activity_name}}</h1>
-
-<div class="container mt-4">
+<div id="EditR" class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('Aggiorna i tuoi dati') }}</div>
 

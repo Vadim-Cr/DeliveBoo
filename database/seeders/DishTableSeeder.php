@@ -62,7 +62,7 @@ class DishTableSeeder extends Seeder
         ],
         [
             'name' => 'Minestrone',
-            'image_path' => 'hhttps://i2.wp.com/www.piccolericette.net/piccolericette/wp-content/uploads/2017/10/3390_Minestrone.jpg?resize=895%2C616&ssl=1',
+            'image_path' => 'https://i2.wp.com/www.piccolericette.net/piccolericette/wp-content/uploads/2017/10/3390_Minestrone.jpg?resize=895%2C616&ssl=1',
             'description' => 'Zuppa di verdure.',
             'price' => 7,
             'availability' => true
