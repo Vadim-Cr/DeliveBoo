@@ -9,22 +9,19 @@ class PaymentController extends Controller
 {
     public function salvaDatiPayment(Request $request)
     {
-        try {
-            $request->validate([
-                'total_amount' => 'required|numeric|min:0',
-                'order_status' => 'required|boolean',
-            ]);
+        $dati = $request->input('dati');
 
-            $order = new Order();
-            $order->totalAmount = $request->total_amount;
-            $order->orderStatus = $request->order_status;
-            $order->save();
+        // $dati = $request->validate([
+        //     'total_amount' => 'numeric|min:0',
+        //     'order_status' => 'boolean',
+        // ]);
 
-            return response()->json(['messaggio' => 'Dati salvati con successo']);
-        }   catch (\Exception $e) {
-            // Gestisci eventuali errori
-            return response()->json(['messaggio' => 'Errore durante il salvataggio dei dati', 'errore' => $e->getMessage()], 500);
-        }
+        // $order = new Order();
+        // $order->total_amount = $request->total_amount;
+        // $order->order_status = $request->order_status;
+        // $order->save();
+
+        return response()->json(['messaggio' => $dati]);
     }
     
 }
