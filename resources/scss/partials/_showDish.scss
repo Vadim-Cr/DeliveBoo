@@ -1,0 +1,17 @@
+@use './shortcut';
+
+#showD {
+    margin-top: 500px;
+    padding-bottom: 60px;
+
+    .card {
+        position: relative;
+
+        .buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+
+        }
+    }
+}

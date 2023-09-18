@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import './partials/shortcut';
 @import './partials/showRestaurant';
+@import './partials/showDish';
 
 * {
     margin: 0;
@@ -18,8 +19,12 @@
 }
 
 .all-content {
-    margin-top: 130px;
-    padding-bottom: 80px;
+    margin-top: 82px;
+    width: 100vw;
+    height: calc(100vh - 82px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
