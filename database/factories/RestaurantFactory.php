@@ -19,7 +19,8 @@ class RestaurantFactory extends Factory
         $photoLink = [
             "https://www.081pizzeria.it/app/uploads/081-pizzeria-interno-1-scaled.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXwKhCfSi7gmkdoH3CiNmKOrehOIwDGFCj2tEtYLQWEA&s",
-            "https://www.ristorantedarosa.com/files/.thumbs/home/slider-2022/2000x/da-rosa-ristorante-como-location.jpg"
+            "https://www.ristorantedarosa.com/files/.thumbs/home/slider-2022/2000x/da-rosa-ristorante-como-location.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbWVh9EFsnnH2ZReBDuPSmbFTg74yyrX5Zag&usqp=CAU"
         ];
 
         return [
