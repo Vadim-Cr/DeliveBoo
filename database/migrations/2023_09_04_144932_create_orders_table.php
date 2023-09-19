@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            
+            $table->string('name', 64);
+            $table->string('last_name', 64);
+            $table->string('address', 255);
+            $table->string('email', 255)->unique();
+            $table->string('mobile_phone')->unique();
             $table->dateTime('date_time');
             $table->float('total_amount', 10, 2);
             $table->boolean('order_status');
-
-            
 
             $table->timestamps();
         });
