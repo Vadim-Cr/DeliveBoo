@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -23,6 +24,19 @@ class PaymentController extends Controller
 
         return response()->json(['messaggio' => $dati]);
     }
-    
-}
 
+    public function inviaDati(Request $request)
+    {
+        $name = $request->input('name');
+        $last_name = $request->input('last_name');
+        $address = $request->input('address');
+        $email = $request->input('email');
+        $mobile_phone = $request->input('mobile_phone');
+        $date_time = $request->input('date_time');
+        $total_amount = $request->input('total_amount');
+        $order_status = $request->input('order_status');
+        $restaurant_id = $request->input('restaurant_id');
+
+        return response()->json(['message' => 'Dati ricevuti con successo'], 200);
+    }
+}

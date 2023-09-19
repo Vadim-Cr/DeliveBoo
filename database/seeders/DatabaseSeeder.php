@@ -14,14 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this -> call([
-            RestaurantTableSeeder :: class,
-            UserTableSeeder :: class,
-            TypologyTableSeeder :: class,
-            DishTableSeeder :: class,
-            OrderTableSeeder :: class,
-            CustomerSeeder :: class
+        $this->call([
+            RestaurantTableSeeder::class,
+            UserTableSeeder::class,
+            TypologyTableSeeder::class,
+            DishTableSeeder::class,
+            OrderTableSeeder::class
         ]);
-
     }
 }
