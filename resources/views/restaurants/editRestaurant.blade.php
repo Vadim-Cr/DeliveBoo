@@ -28,10 +28,15 @@
                     {{-- input immagine --}}
                     <div class="form-group mb-4 row">
                         <label for="image_path" class="col-md-4 col-form-label text-md-right">Immagine</label>
-                        <div class="col">
-                        <input type="file" name="image_path" id="image_path" value="{{ $restaurant->image_path }}" class="form-control" accept="image/*" max="2097152">
+                        <div class="col-md-6">
+                            <input  type="file" class="form-control" name='image_path' id="image_path" accept="image/*" max="2097152">
+                            @if($restaurant->image_path)
+                                <img src="{{ Storage::exists($restaurant->image_path) ? asset('storage/' . $restaurant->image_path) : $restaurant->image_path }}" width='200px' class="d-block m-auto my-2">
+                            @endif
                         </div>
                     </div>
+                         
+                        
             
                     {{-- input indirizzo ristorante --}}
                     <div class="form-group mb-4 row">
