@@ -16,7 +16,8 @@ use App\Http\Controllers\Api\PaymentController;
 |
 */
 
-Route::post('/invia-dati', [PaymentController::class, 'inviaDati']);
+Route::post('/invia-dati', [PaymentController::class, 'inviaDati'])
+    ->name('invia-dati');
 
 Route::prefix('/v1')->group(function () {
     Route::get('/test-api', [RestaurantController::class, 'testApi']);
