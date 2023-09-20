@@ -12,20 +12,20 @@
                     <form method="POST" action="{{ route('dish.update', $dish -> id) }}" enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
-                    
+
                         {{-- input nome piatto --}}
                         <div class="mb-4 row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome del Piatto') }}</label>
-                    
+
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{$dish -> name}}"  required autocomplete="name" autofocus >
                             </div>
                         </div>
-                    
+
                         {{-- input immagine --}}
                         <div class="mb-4 row">
                             <label for="image_path" class="col-md-4 col-form-label text-md-right">Immagine</label>
-                            
+
                             <div class="col-md-6">
                                 <input  type="file" class="form-control" name='image_path' id="image_path" accept="image/*" max="2097152">
                                 @if($dish->image_path)
@@ -33,20 +33,20 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                         {{-- input descrizione --}}
                         <div class="mb-4 row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descrizione Piatto') }}</label>
-                    
+
                             <div class="col-md-6">
                                 <input id="description" type="textarea" class="form-control" name="description" value="{{$dish -> description}}" autofocus>
                             </div>
                         </div>
-                    
+
                         {{-- input prezzo piatto --}}
                         <div class="mb-4 row">
                             <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Prezzo') }}</label>
-                    
+
                             <div class="col-md-6">
                                 <!-- Il tuo codice HTML e Blade qui sopra -->
                                 <input id="price" type="text" class="form-control" name="price" value="{{$dish -> price}}" required autofocus>
@@ -58,7 +58,7 @@
 
                                         priceInput.addEventListener("blur", function() {
                                             const value = parseFloat(this.value.replace(",", "."));
-                                            
+
                                             if (!isNaN(value)) {
                                                 this.value = value.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                                             } else {
@@ -74,11 +74,20 @@
 
                             </div>
                         </div>
-                    
-                        {{-- checkbox per disponibilità --}}
-                        <label for="availability">Disponibile</label>
-                        <input type="checkbox" id="availability" name="availability"  value="{{$dish -> availability}}">
-                    
+
+                        {{-- radio per disponibilità --}}
+                        <div class="form-group">
+                            <label>Disponibile:</label>
+                            <div class="form-check">
+                                <input type="radio" id="availability_yes" name="availability" value="1" @if($dish->availability) checked @endif>
+                                <label class="form-check-label" for="availability_yes">Si</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="availability_no" name="availability" value="0" @if(!$dish->availability) checked @endif>
+                                <label class="form-check-label" for="availability_no">No</label>
+                            </div>
+                        </div>
+
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" id="submit" class="btn btn-success">
@@ -86,7 +95,7 @@
                                 </button>
                             </div>
                         </div>
-                    
+
                     </form>
                 </div>
             </div>
