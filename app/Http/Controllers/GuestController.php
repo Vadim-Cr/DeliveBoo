@@ -16,28 +16,28 @@ class GuestController extends Controller
         return view("restaurants.showRestaurant", compact('restaurant'));
     }
 
-    public function show($id) {
-        $dishes = Dish::all();
-        $restaurant = Restaurant::findOrFail($id);
-         
-        // Verifica se il ristorante esiste
-        if (!$restaurant) {
-            return redirect('/')->with('error', 'Ristorante non trovato');
+        public function show($id) {
+            $dishes = Dish::all();
+            $restaurant = Restaurant::findOrFail($id);
+            
+            // Verifica se il ristorante esiste
+            if (!$restaurant) {
+                return redirect('/')->with('error', 'Ristorante non trovato');
+            }
+        
+            // Verifica se l'utente è loggato
+            if (!Auth::check()) {
+                return redirect('/')->with('error', 'Devi essere loggato per accedere a questa pagina');
+                dd($restaurant);
+            }
+        
+            // Verifica se l'utente loggato è il proprietario del ristorante
+            if (Auth::user()->restaurant_id == $restaurant->id) {
+                return view('show', ['restaurant' => $restaurant, 'dishes' => $dishes]);
+            } else {
+                return redirect('/')->with('error', 'Non autorizzato');
+            }
         }
-    
-        // Verifica se l'utente è loggato
-        if (!Auth::check()) {
-            return redirect('/')->with('error', 'Devi essere loggato per accedere a questa pagina');
-            dd($restaurant);
-        }
-    
-        // Verifica se l'utente loggato è il proprietario del ristorante
-        if (Auth::user()->restaurant_id == $restaurant->id) {
-            return view('show', ['restaurant' => $restaurant, 'dishes' => $dishes]);
-        } else {
-            return redirect('/')->with('error', 'Non autorizzato');
-        }
-    }
 
     public function edit($id) {
         $restaurant = Restaurant::find(Auth::user()->restaurant_id);
