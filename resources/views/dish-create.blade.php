@@ -24,12 +24,12 @@
                         {{-- input immagine --}}
                         <div class="mb-4 row">
                             <label for="image_path" class="col-md-4 col-form-label text-md-right">Immagine</label>
-                            
+
                             <div class="col-md-6">
                                 <input  type="file" class="form-control" name='image_path' id="image_path" accept="image/*" max="2097152">
                             </div>
                         </div>
-                        
+
                         {{-- input descrizione --}}
                         <div class="mb-4 row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descrizione Piatto') }}</label>
@@ -54,7 +54,7 @@
 
                                         priceInput.addEventListener("blur", function() {
                                             const value = parseFloat(this.value.replace(",", "."));
-                                            
+
                                             if (!isNaN(value)) {
                                                 this.value = value.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                                             } else {
@@ -66,9 +66,18 @@
                             </div>
                         </div>
 
-                        {{-- checkbox per disponibilità --}}
-                        <label for="availability">Disponibile</label>
-                        <input type="checkbox" id="availability" name="availability" value="1">
+                        {{-- radio per disponibilità --}}
+                        <div class="form-group">
+                            <label>Disponibile:</label>
+                            <div class="form-check">
+                                <input type="radio" id="availability_yes" name="availability" value="1">
+                                <label class="form-check-label" for="availability_yes">Si</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="availability_no" name="availability" value="0">
+                                <label class="form-check-label" for="availability_no">No</label>
+                            </div>
+                        </div>
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
