@@ -13,18 +13,20 @@
     background-color: $second_color;
     position: fixed;
     width: 100%;
+    height: 82px;
     top: 0;
     left: 0;
     z-index: 999;
 }
 
 .all-content {
-    margin-top: 82px;
     width: 100vw;
     height: calc(100vh - 82px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    padding-top: 25px;
 }
 
 h1 {
